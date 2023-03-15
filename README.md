@@ -6,7 +6,7 @@
 <h2>➲ 課程筆記區 ✍🏻</h2>
 <h2>➲ 課堂練習區 ✍🏻</h2>
 
-[Week2](https://github.com/61171029h/LAT-REPO/blob/main/week2_hw)
+[Week2](https://github.com/61171029h/LAT-REPO/blob/main/week2_hw)</br>
 [Week4](https://github.com/61171029h/LAT-REPO/tree/main/week4_chatgpt)
 <h2>➲ 作業連結區 ✍🏻</h2>
 
