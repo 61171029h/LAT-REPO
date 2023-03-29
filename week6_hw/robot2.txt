@@ -1,0 +1,530 @@
+         The e-puck, a Robot Designed for Education in Engineering
+
+       Francesco Mondada1, Michael Bonani1, Xavier Raemy2, James Pugh2, Christopher Cianci2,
+ Adam Klaptocz3, St ephane´ Magnenat1, Jean-Christophe Zufferey3, Dario Floreano3, Alcherio Martinoli2
+
+  Abstract— Mobile robots have the potential to become the
+ideal tool to teach a broad range of engineering disciplines.
+Indeed, mobile robots are getting increasingly complex and
+accessible. They embed elements from diverse ﬁelds such as
+mechanics, digital electronics, automatic control, signal pro-
+cessing, embedded programming, and energy management.
+Moreover, they are attractive for students which increases
+their motivation to learn. However, the requirements of an
+effective education tool bring new constraints to robotics. This
+article presents the e-puck robot design, which speciﬁcally
+targets engineering education at university level. Thanks to its
+particular design, the e-puck can be used in a large spectrum
+of teaching activities, not strictly related to robotics. Through
+a systematic evaluation by the students, we show that the e-
+puck ﬁts this purpose and is appreciated by 90 percent of a
+large sample of students.
+
+                I. INTRODUCTION
+                                                                   Fig. 1. The e-puck robot.
+  Mobile robots are both fascinating objects and the result
+of the fusion of multiple competences. This fascination
+leads to the organization of plenty of robotics contests The Khepera II from K-Team is a redesign of the
+worldwide annually [16]. From an engineering point of original Khepera robot [15]. With the same size of the
+view, the design and control of mobile robots requires skills original Khepera, it is compatible with its extensions,
+in many disciplines such as mechanics, electronics, energy software, and scientiﬁc tools. The Khepera II is interesting
+management, computer science, signal processing, and because its size allows to use it on a desktop. It is expensive
+automatic control. The combination of these two aspects (around 1500 e for a basic conﬁguration) but is known for
+(fascination and inter-disciplinarity) makes mobile robots being reliable and well supported.
+an excellent educational platform that enables students to The Hemisson from K-Team is a cheap platform (225 e)
+address a broad range of engineering ﬁelds.         with a diameter of 120 mm. It only provides a limited
+  This paper presents, for the ﬁrst time, the design ap-
+                        1                           computational power and few sensors in its basic conﬁgu-
+proach resulting in the e-puck , an educational desktop mo- ration, but is extensible. It is a robust platform well suited
+                        ´
+bile robot developed at the Ecole Polytechnique Fed´ erale´ for beginners.
+de Lausanne (EPFL) for a broad exploitation in teaching
+                                                      The IdMind’s circular GT kit is a similar platform
+activities. The main objectives of this development were:
+                                                    slightly cheaper (210 e) with a diameter of 150 mm. It
+  • The use of a common platform in all EPFL courses has less standard extensions than Hemisson, but has more
+    related to mobile robotics, to replace the different I/O available ports to connect self-made extensions. It is
+    robots previously in use.                       more suited for experimentation using custom self-made
+  • The use of a mobile robot in non-robotic courses, extensions.
+    for instance signal processing, automatic control, and Even cheaper (175 e), the platform Bot’n Roll is
+    embedded programming, in order to propose more  representative of a set of simple robots with few sensors
+    project-based exercises.                        that are excellent starting kits for beginners. This and
+  • The introduction of mobile robots earlier in the the previous kit improve their accessibility by providing
+    curriculum, which implies the deployment in larger graphic programming environments.
+    classes (50 to 100 students).                     The Lego Mindstorms RCX was the ﬁrst robotic plat-
+                                                    form from the Lego company. The RCX is built around a
+       II. EXISTING ROBOTS FOR EDUCATION
+                                                    small 8 bit processor and can manage only 3 inputs and
+  A wide range of mobile robots are available on the 3 outputs (typically DC motors without encoder); but the
+market. In this section we survey the subset of them that combination with the Lego bricks makes it a fantastic tool
+we think to be relevant as educational platforms.   to discover new robots shapes. The RCX has been replaced
+                                                    in 2006 by the Lego Mindstorms NXT. This newer version
+ This work was supported by the Ecole´ Polytechnique Fed´ erale´ de Lau-
+sanne, Switzerland (EPFL, http://www.epfl.ch) in the framework is equipped with more advanced sensors, including color
+of a FIFO project (Fond pour l’Innovation dans la Formation). All authors and sound, and can drive motors equipped with encoders.
+are associated with EPFL, in the following laboratories: 1. Laboratoire de It is a clear reference in the ﬁeld because of its good
+Systemes` Robotiques, 2. Distributed Intelligent Systems and Algorithms
+Laboratory, 3. Laboratory of Intelligent Systems.   computational power, its ﬂexibility and interesting price
+ 1e-puck: http://www.e-puck.org                     (260 e).
+  The Palm Pilot Robot Kit (PPRK) is a commercially cleaning module, this platform provides low cost mobil-
+available platform2 from Carnegie Mellon University com- ity (100 e). Its sensors, designed for vacuum cleaning
+bining a mobile base and a personnal digital assistant tasks, offer a good support for reactive navigation. The
+(PDA), originally a Palm Pilot. The PDA provides the limited internal processor, dedicated to the low-level robot
+computational power and the user interface and controls the control, is programmable by simple scripts. Any advanced
+sensors and the actuators through a serial connection with programming or supplementary I/O requires an additional
+a PIC processor. The result is a compact omnidirectional main processor.
+platform with three distance sensors (in its basic conﬁg-
+uration for 250 e). Furthermore, the availability and the III. ROBOT DESIGN FOR ENGINEERING EDUCATION
+maturity of Palm development tools makes this platform Most of the aforementioned products are exclusively
+an interesting starting kit.                        either efﬁcient mobile robots or good educational tools.
+  The   Cye  platform3  is  a  medium-size   robot  However, being both implies the following criteria:
+(40×28×13   cm) equipped  with special wheels that    • Desktop size. A robot that can evolve on the desk
+ensure a good odometry. Its price is around 540 e.      near the computer improves drastically the student
+Designed for indoor domestic environments, Cye can      efﬁciency during experimentation. We consider that
+carry extensions such as a vacuum cleaner and can       for a good mobility, the experimentation space should
+navigate in indoor environments.                        be 10 times the diameter of the robot. On a table, this
+  The Khepera III from K-Team is a research oriented    implies a robot diameter smaller than 80 mm.
+platform much larger than the Khepera II (120 mm of   • Wide range of possibilities from an engineering and
+diameter). It is adaptable to speciﬁc research requirements educational point of view. To exploit this tool in
+through extensions, for instance the korebot board which various ﬁelds of education such as signal processing,
+provides an XScale processor. Flexible, efﬁcient, and pow- automatic control, embedded programming, or dis-
+erful with respect to its size, this robot is also quite tributed intelligent systems design, the robot should
+expensive as an educational robot (around 2000 e in basic provide a wide set of functionalities in its basic
+conﬁguration).                                          version.
+                                 4
+  The ER1 from  Evolution Robotics is a simple alu-   • User friendly. The user interface has to be simple,
+minum  frame kit supporting a laptop (not included) and efﬁcient, and intuitive. This is an important point for
+equipped with wheels. The laptop provides the computa-  the acceptance of the system by the students.
+tional hardware, which improves the performance / cost ra- • Low cost. The broad introduction in engineering
+                                              e
+tio of the kit (the basic conﬁguration costs around 230 ). classes requires a large number of robots. Knowing
+The motor wheels controller has some free inputs/outputs that the budget of many schools is constant or de-
+but provides limited computational power. This low-cost creasing, this is only feasible by reducing the cost of
+kit comes with a sophisticated but expensive software   an individual robot.
+environment for navigation and vision.                • Open information. This robot has to be shared among
+                        5
+  The KHR-1 from Kondo   has been the ﬁrst humanoid     professors, laboratories, schools and universities. An
+robot with good mobility capabilities (17 DOF) for a price open source hardware/software development model is
+          e
+under 1000  .                                           an effective way to achieve this goal.
+  The Pioneer 3 (P3) is the latest version of the Pioneer
+                                                      None of the platforms available on the market is re-
+robot by ActivMedia. It is a large (44×38×22 cm) solid
+                                                    specting these criteria. Most robots are large and thus need
+platform on which the user can install custom processors,
+                                                    to operate on the ﬂoor. The smallest robots are either
+sensors, and actuators. The AmigoBot of the same com-
+                                                    expensive or have limited functionalities. Very few are
+pany is a cheaper version (1550 e) of the same concept.
+                                                    open source.
+  The Garcia from Acroname6  is a small robot frame
+                                                      This motivated us to create the e-puck robot in summer
+(25×18×10 cm) designed to be controlled by a companion
+                                                    2004. We tested a ﬁrst set of prototypes with students
+XScale board. The size of Garcia makes it suitable for
+                                                    during the 2004–2005 academic year. Based on this ex-
+experiments in compact environments. Its price is around
+                                                    perience, we redesigned the robot and produced the ﬁnal
+1360 e in the basic conﬁguration.
+                                                    version in summer 2005 (Fig. 1). The following sections
+  Robotino from Festo7 is a modern mobile robotic plat-
+                                                    present the robot design and a student evaluation based on
+form for education. Robotino runs a real-time Linux kernel
+                                                    its use during four semesters from 2005 to 2007.
+and is built around industrial standards. These features
+make this robot powerful in term of computational power   IV. THE E-PUCK DESKTOP MOBILE ROBOT
+but also expensive (about 4500 e). Robotino is well
+                                                      We based the design of the robot on the ﬁrst two
+suited for technical schools that want to approach technical
+                                                    aforementioned criteria: desktop size and ﬂexibility. Com-
+problems using robotics.
+                                                    bined, these two constraints imply the miniaturization of
+  Roomba Create from iRobot is an educational/research
+                                                    a complex system. To achieve a low price, we opted
+version of the roomba vacuum cleaner. Devoided of the
+                                                    for the use of cheap components and mass production
+ 2PPRK: http://www.cs.cmu.edu/˜pprk/                manufacturing techniques. We took special care to make
+ 3
+  Cye: http://www.personalrobots.com                the robot as user-friendly and interactive as possible, in
+ 4Evolution Robotics: http://www.evolution.com
+ 5Kondo: http://www.kondo-robot.com                 order to ensure that it would be well received by students.
+ 6Acroname: http://www.acroname.com                   In this design process, a central aspect is the choice
+ 7Festo: www.festo-didactic.com                     of the robot features. This particular choice is one of the
+innovations of the e-puck design. The sensors, actuators,  low battery detection         3.3V regul.
+and interfaces of the e-puck are representatives of a wide                                      to all
+                                                            power- low battery                  devices
+range of devices one can ﬁnd in several engineering sub-    on led  indicator
+                                                                                                2x stepper
+domains:                                                                                        motors
+                                                            extension connectors
+  • sensors in different modalities: audio, visual, dis-
+                                                                                                body light
+    tances to objects, gravity,                             programming/
+  • input devices with different bandwidths from 10 Hz      debug connector
+    to 10 MHz (Figure 2, left),                                            dsPIC 30F6014A       8x IR prox.
+                                                                              16 Mips
+                                                           RS232
+  • actuators with different actions on the environment    connector     8kB RAM, 144kB FLASH
+    (Figure 2, right),
+                                                                                                8x Red Leds
+                                                          IR remote
+  • wired and wireless communication devices,             control
+                                                                                                Front Led
+  • two types of processors: general purpose and DSP.
+                                                              bluetooth             14MHz
+By exploiting this large set of possibilities, a teacher      radio link             clock      CMOS
+                                                                                                color
+can present and the student can practice a broad set of      RESET                              camera
+engineering ﬁelds and skills.                           ON -                         1.8V
+                                                        OFF   running                regul.
+                                                              mode                               3D
+                                                              selector                          accelero-
+        INPUTS      PROCESSING     OUTPUTS                                                      meter
+                                                                                                3x micro
+                                                          battery 5Wh Battery audio
+         10-100Hz               displacement             protection swappable and codec
+ IR proximity       Generic, C prog.      Motors                  rechargeable                  speaker
+          0.1-1kHz                display
+Accelerometer         PIC core            Lateral LEDs
+         10-40kHz                 audio
+ Microphones                              Speaker          Fig. 3. The outline of the electronic of the e-puck.
+                   Specific, ASM prog.
+         10k-10MHz               directed
+    Camera                                Front LED
+                      DSP core
+         1kHz serial             aesthetic
+   IR remote                              Body LED    2) Sensors and actuators: To ensure a broad range of
+           code
+                                                    experimentation possibilities, the e-puck contains various
+                                                    sensors covering different modalities:
+                  radio cable
+                              COMMUNICATION           • Eight infrared (IR) proximity sensors placed around
+
+                   Bluetooth RS232                      the body measure the closeness of obstacles or the
+                                                        intensity of the ambient infrared light. These are
+Fig. 2. The e-puck allows exploration of different engineering topics, typical sensors for simple navigation in cluttered
+control options, and signal bandwidths.                 environments.
+                                                      • A 3D accelerometer provides the acceleration vector
+  For applications where the basic features are not sufﬁ- of the e-puck. This vector can be used to measure
+cient, the e-puck can be extended with speciﬁc hardware. the inclination of the e-puck and the acceleration
+We provide embedded software consisting of a library    produced by its own movement. It can also detect
+and several demo applications. We also provide an open  collisions and if the robot falls. This sensor is rarely
+source simulator and a monitoring tool to run on a desktop included in miniature low-cost mobile robots. We
+computer. In this section we present the detailed hardware decided to include it because it allows a rich set of
+and software design choices.                            experiments.
+                                                      • Three microphones capture sound. Multiple micro-
+A. e-puck hardware (basic conﬁguration)                 phones allow the e-puck to localize the source of
+                                                        the sound by triangulation. The bandwidth of this
+  1) Microcontroller: The electronic structure of the e- signal is much larger than the one of the accelerometer
+puck (Fig. 3) is built around a Microchip dsPIC mi-     or of the infrared sensors, making the microphones,
+crocontroller. This microcontroller complies with the ed- because of their larger computational demands, the
+ucational criteria of ﬂexibility because it embeds both ideal tools to learn how to use the DSP unit.
+a 16 bit processor with a 16 entry register ﬁle and a • A color CMOS camera with a resolution of 640×480
+digital signal processor (DSP) unit. This CPU runs at 64 pixels in front of the e-puck enables experimentation
+MHz and provides 16 MIPS  of peak processing power.     in vision. Only a sub-part of the image can be
+                                    8
+The instruction set is mostly orthogonal and rich; in   grabbed: the size of acquisition is limited by the
+particular, it contains multiply-acccumulate and hardware- memory size of the dsPIC and the rate is limited
+repeat instructions suitable to drive the DSP unit, for by its processing power. Any format of sub-image
+instance to efﬁciently compute scalar products and fast is acceptable, providing these two constraints are
+fourier transforms. Finally, this processor is supported by fulﬁlled. For instance, the e-puck can grab a color
+a custom tailored version of the GCC C compiler. For the image of 40×40 pixels at 4 frames per second; the
+e-puck, we chose a microcontroller version with 8 kB of frame rate is doubled in gray-scale. This limitation
+RAM  and 144 kB of ﬂash memory.                         shows to the students the impact of high bandwidth
+                                                        sensors such as cameras.
+ 8
+  An instruction set is orthogonal if any instruction can use data of The e-puck provides the following actuators:
+any type via any addressing mode (http://en.wikipedia.org/
+wiki/Orthogonal_instruction_set)                      • Two stepper motors. They control the movement of
+    the wheels with a resolution of 1000 steps per wheel
+    revolution.
+  • A speaker, connected to an audio codec. Combined
+    with the microphones, the speaker can create a com-
+                                                                                        light diffusion
+    munication network with the ability to detect the                                   ring
+    direction of peers. It is also an excellent output device
+    for human interaction.
+  • Eight red light emitting diodes (LED) placed all                                    default top
+    around the e-puck. These LEDs are covered by a                                      extension turret
+    translucent plastic and the e-puck can modulate their
+                                                                                        extension
+    intensities. They provide a visual interface with the main CPU board                connectors
+    user; furthermore, another e-puck can observe them
+    with its camera which allows mutual visual interac-
+    tions.                                                                              left wheel
+  • A set of green LEDs placed in the transparent body.                                 slot for bottom
+    By lighting the body, they improve the interactions                                 extension
+    with the user.
+                                                                                        motors
+  • A red front LED placed beside the camera. This LED
+    generates a focused beam that projects a red spot
+    on objects in front of the e-puck. Combined with
+    the camera, this spot allows distant measurements at main mechanical
+    longer range than the infrared proximity sensors.        body
+                                                         right wheel
+  3) User interface: The e-puck also contains several
+devices to interact with the user and to communicate with                               LiIon battery
+other equipments:
+
+  • Two LEDs show the status of the battery: One indi- Fig. 4. The mechanical structure of the e-puck in an exploded view.
+    cates whether the robot is powered on, while the other
+    indicates a low battery condition.
+  • A connector to interface to an in-circuit debugger, to B. e-puck extensions
+    program the ﬂash memory and to debug code.        To address the needs of speciﬁc teaching scenarios that
+  • An infrared remote control receiver, to control the e- require different mechatronics, the user can connect phys-
+    puck with standard television remote controls.  ical extensions to provide additional sensors, actuators,
+  • A classic RS232 serial interface to communicate with or computational power. Extensions physically connect
+    a desktop computer.                             through an extension bus which routes a two wires inter-
+  • A Bluetooth radio link to connect to a desktop com- processor communication bus (I2C) as well as the connec-
+    puter or to communicate with up to 7 other e-pucks. tions to most sensors.
+  • A reset button.                                   There are three physically different types of extensions:
+  • A 16 positions rotary switch to specify a 4 bit number, “top”, “bottom”, and “sandwich”.
+    which can be used, for instance, to select among pre- Top extensions do not allow other extensions above
+    programmed behaviors or parameters.             them. The basic e-puck includes a default extension board
+  4) Mechanics: The robot has a diameter of 75 mm   of this type which provides the speaker, the 16 positions
+and a height which depends on the connected extensions. rotary switch, the infrared remote control receiver, the
+The mechanical structure of the e-puck consists of injected RS232 connector, and a reset button (Fig. 1, right). There
+plastic parts. We have chosen this manufacturing technique are several other extensions of this type available, for
+because it reduces the unit price of the robot for sufﬁcient instance:
+quantities. The robot structure is simple, being made of • A rotating scanner. It is equipped with infrared trian-
+only four injected plastic parts: the main body, the light gulation distance sensors with a range of 40 cm (Fig.
+ring, and the two wheels (Fig. 4). The main body is the 5, left). For exercises involving robot localization,
+core of the mechanical structure and encloses the battery. the short range (2–3 cm) of the proximity sensors
+The user can extract the battery from the bottom of the e- available on the basic version of the e-puck is not
+puck. The two motors are simply laterally screwed onto the sufﬁcient.
+main body, with the wheels directly attached to the motor • A turret with three linear cameras. It provides a very
+axis. The main printed circuit board (PCB), containing most large ﬁeld of view for measuring optical ﬂow [8], [21]
+of the electronics, is screwed on top of the main body. (Fig. 5, right) still requiring few memory.
+A light diffusion ring and a default extension board are Bottom extensions are internal PCBs, enclosed in a
+mounted over this main PCB; the user can replace the vertical slot in the front part of the main body. These
+default extension board with application speciﬁc boards, extensions are close to the ground and are connected to
+as illustrated by some examples in the next section. All the main PCB by an I2C bus and a power connection. For
+mechanical parts are transparent and allow to observe all instance, an extension of this type provides three analog
+components.                                         sensors which measure the ground color (Fig. 6, left top).
+                                                      1) Bootloader: To program and debug a microcon-
+                                                    troller, one typically uses an in-circuit debugger, which
+                                                    is a speciﬁc piece of hardware. To reduce cost and remove
+                                                    this requirement, the e-puck comes with a bootloader that
+                                                    allows the user to re-program the ﬂash of the microcon-
+                                                    troller through the Bluetooth or the serial port. At boot,
+                                                    the bootloader listens a small amount of time for activity
+                                                    on these ports, and if none is detected, launches the user
+                                                    application. During this time, the user has the opportunity
+                                                    to send a special command in order to ﬂash a new program.
+Fig. 5. Two “top” extensions for the e-puck robot: an infrared distance 2) Low-level library: To facilitate the use of the e-
+scanner (left) and a large ﬁeld of view linear camera (right). puck hardware, which requires speciﬁc code with precise
+                                                    timings, we provide a collection of functions called the
+                                                    “Low-Level Library”. This library contains functions such
+                                                    as “move the right motor at that speed”, “read 40×40 pixel
+                                                    image”, or “send this message through Bluetooth”. It is
+                                                    statically linked with the user application at compile time.
+                                                      3) BTcom  protocol: When developing for a robot, it
+                                                    is often useful to be able to control it from a desktop
+                                                    computer. To that end, the e-puck comes with a moni-
+                                                    tor implementing a remote control protocol through the
+                                                    Bluetooth or the serial port, called the “BTcom protocol”.
+                                                    This protocol provides full remote control of the e-puck,
+                                                    allowing the desktop computer to set the speed of the
+                                                    motors, read the image of the camera, specify the state of
+                                                    the LEDs, read the accelerometer, and so on. This allows
+                                                    the user to develop applications on a desktop computer,
+                                                    in a comfortable environment with a rich set of develop-
+                                                    ment tools. Moreover, with this approach, applications can
+                                                    exceed the computational capabilities of the dsPIC. The
+                                                    same strategy can be used to control the e-puck from a
+                                                    simulator, such as Enki or Webots.
+Fig. 6. Left top: A bottom extension to measure the ground color. Left
+bottom: a “sandwich” extension implementing a Zigbee radio link. Right:
+A complete visual communication system consisting of two “sandwich”
+extensions.                                         D. e-puck simulation
+
+                                                      Several simulators support the e-puck. Among them,
+  Extensions can also be “sandwich” boards that replicate we use Webots and Enki. Webots [13] is commercial
+                                                                                                    10
+the connector on their top, for instance:           and supports three-dimensional physics through the ODE
+                                                    library. Enki11 is open source and provides fast 2D physics,
+  • a Zigbee radio link with adjustable radio communica- which, for instance, makes it suitable for evolutionary
+    tion range does not require mechanical access to the robotics experiments [7].
+    top of the e-puck [4] (Fig. 6, left bottom);
+  • a color RGB LED ring (Fig. 6 right);
+  • an omnidirectional vision turret with onboard micro- E. Availability
+    controller dedicated to vision (Fig. 6 right)
+                                                      All our software, design, and production documents are
+Several extensions of this type can be stacked, and a top
+                                                    available under an open source hardware/software license,
+turret placed above (Fig. 6 right).
+                                                    meaning that anyone can use and modify them as long as
+                                                    they comply with the license.
+C. e-puck embedded software                           Currently, two companies (GCtronic and AAI Japan)
+  To develop software for the e-puck, we provide stan- produce the e-puck and about ten companies distribute it
+dard components: a bootloader to program the e-puck under the term of the open hardware license. A growing
+over Bluetooth, a low-level library to drive the hardware, community is using the e-puck both for research and
+and a monitor to communicate with a desktop computer. education (see for instance [1], [20], [18], [12], [11], [5],
+Within the community of e-puck users, standard software [2], [10], [14], [9], [17]).
+modules are also developed. For instance a Player server is The production price of the e-puck basic version is
+developed by VeRLab9. These components are all released around 250 e. The selling price by most companies is
+under the e-puck open source license.               around 550 e.
+
+ 9Player driver for the e-puck robot: http://code.google.com/ 10Open Dynamics Engine: http://www.ode.org
+p/epuck-player-driver/                                11Enki: http://home.gna.org/enki/
+  V. ENGINEERING EDUCATION USING THE E-PUCK             their awareness of the differences between various
+                 ROBOT AT EPFL                          types of implementation levels; for example realistic
+                                                        simulations and real experiments.
+  At EPFL, several courses exploit the e-puck robot as ex-
+                                                      • Position estimation and path ﬁnding of a mobile robot
+perimentation platform. In particular we organize practical                                          .
+exercices in the following teaching areas:              In a 10 hours practical session we use the e-puck
+                                                        to explore robot localization and path ﬁnding. These
+  • Signal processing. We use the e-puck to explore signal techniques are active ﬁelds of research and begin
+    processing on sound, which is an optimal context for to see deployment in industry [6]. They are usually
+    education because of the signal low frequency, low  implemented using expensive sensors such as laser
+    propagation speed, ease of generation, acquisition, range ﬁnder [19], which, because of limited education
+    and direct perception by humans. In our embedded    budgets, often restricts their teaching to simulation.
+    programming course we explore signal processing ap- Yet simulation is not always sufﬁcient to fully un-
+    plications during two sessions of ﬁve hours each. We derstand what is critical for correct functionality on
+    analyze the sound using a fast fourier transform (FFT), physical robots. The e-puck, with the distance scanner
+    with a close attention to its efﬁcient implementation extension (see Section IV-B and Fig. 5, left), allows
+    on the DSP unit. In each session, we ﬁrst present   students to explore these techniques in a physical
+    the theory; then the students verify it on MATLAB   setup.
+    with data acquired from the robot, and ﬁnally they
+    implement it on the dsPIC of the e-puck.           VI. EVALUATION OF E-PUCK BY THE STUDENTS
+  • Automatic control. In our embedded programming
+                                                      Our embedded programming course using the e-puck
+    course, we apply automatic control concepts on the
+                                                    has been evaluated on a regular basis since the introduction
+    e-puck. The goal of the ﬁve hours session is to build
+                                                    of the e-puck in 2005. The goal of this course is the
+    a regulator that controls the e-puck and maintains a
+                                                    understanding and practice of embedded programming.
+    constant distance with respect to a visual target (Fig.
+                                                    Most of the course focuses on C programming, with links
+    7, left). The input of a proportional-integral regulator
+                                                    to assembler and some concepts of C++. Practicals explore
+    is the estimated distance to the target, extracted from
+                                                    signal processing and control problems. The students who
+    the camera looking at a vertical black stripe on a white
+                                                    attend this course are not specialized in robotics. All the
+    background (Fig. 7, right). The output of the regulator
+                                                    programming exercises of this course are performed using
+    is assigned to the speed of both wheels, reducing the
+                                                    the e-puck as a motivation tool.
+    problem to one degree of freedom.
+                                                      Over the ﬁrst three years of e-puck use, students were
+                                                    asked to give feedback about the use of the e-puck to
+                                                    illustrate the concepts of the course. Fig. 8 summarizes
+                                                    the results of this analysis and shows that more than 90
+                                                    percent of the students agree that the e-puck is a good
+                                                    tool to illustrate the concepts of the course. The score has
+                                                    slightly improved over the years, with the ﬁne-tuning of
+                                                    the course.
+Fig. 7. Model of the problem (left) and scheme of the regulator (right)
+for the e-puck automatic control practical.
+                                                     The e-puck robot is a good tool to illustrate the concepts of the course
+                                                                                         June 2007, 48 students, 
+                                                                                         on ASM, C and C++ 
+  • Behaviour-based robotics. In a robotics course, we                                   programming
+
+    use the e-puck to provide the students with a better                                 June 2006, 79 students, 
+    understanding of the subsumption architecture [3],                                   on C++ programming
+                                                                                         February 2006, 90 students, 
+    its advantages and its shortcomings. The goal of the                                 on ASM, C programming
+                                                                                         February 2005, 56 students, 
+    exercise is to implement a behavior-based controller                                 on ASM, C programming
+
+    for a simpliﬁed industrial application consisting of the totally agree partially agree no opinion partially disagree totally disagree
+    transport of goods throughout a warehouse. The e-
+    puck (the carrier) has to follow a line painted on the Fig. 8. Comparison between the evaluations of the e-puck robot as
+    ground (the track), while avoiding obstacles and going teaching tool.
+    back to the line after disruption. To that end, the e-
+    puck is equipped with the ground sensor extension When asked about the quality of the e-puck, students
+    (see Section IV-B and Fig. 6, left top).        gave the feedback shown in Fig. 9. These results show that
+  • Distributed intelligent systems. Our course on dis- the latest version of e-puck is considered as performing
+    tributed intelligent systems (formerly focusing on well by more than 90 percent of the students. We observe
+    swarm intelligence) includes weekly laboratory ex- a clear improvement since the ﬁrst version evaluated in
+    ercises in which the students use a combination of February 2005.
+    real e-puck robots and realistic simulations using
+    Webots [13] to test and verify the topics and the-              VII. CONCLUSION
+    ories presented in lectures. This help the students The e-puck robot is an innovative education tool for
+    to assimilate theoretical concepts around multi-robot engineering in a broad sense. For its size and price, it is a
+    coordination and networking, and to understand the complex systems that we exploit to teach a wide range of
+    difﬁculties of implementing them. This also enhances topics. By integrating the latest technologies in a compact
+   The e-puck robot is performing well                                [12] Mattias Jacobsson, Sara Ljungblad, Johan Bodin, Jeffrey Knurek,
+                                                      June 2007,           and Lars Erik Holmquist.    Glowbots: robots that evolve rela-
+                                                      48 students, on V2   tionships. In SIGGRAPH ’07: ACM    SIGGRAPH 2007 emerging
+                                                      June 2006,           technologies, page 7, New York, NY, USA, 2007. ACM.
+                                                      79 students, on V2 [13] Olivier Michel. Webots: Professional Mobile Robot Simulation.
+                                                      February 2006,       International Journal of Advanced Robotic Systems, 1(1):39–42,
+                                                      90 students, on V2   2004.
+                                                      February 2005,  [14] Yasser F. O. Mohammad and Toyoaki Nishida. TalkBack: Feedback
+                                                      56 students, on V1   from a Miniature Robot, pages 357–366. Springer, 2007.
+    totally agree partially agree no opinion partially disagree totally disagree [15] F. Mondada, E. Franzi, and P. Ienne. Mobile robot miniaturization:
+                                                                           A  tool for investigation in control algorithms. In T. Yoshikawa
+Fig. 9. Comparison between the evaluation of the quality of the e-puck     and F. Miyazaki, editors, Proceedings of the Third International
+robot and its on-board software, following its evolution over the years    Symposium   on Simulation on Experimental Robotics (ISER-93),
+and versions.                                                              volume 200 of Lecture Notes in Control and Information Sciences,
+                                                                           pages 501–513. Springer, 1993.
+                                                                      [16] R.R. Murphy. “competing” for a robotics education. Robotics and
+                                                                           Automation Magazine, IEEE, 8(2):44–55, Jun 2001.
+design, it repositions robotics in the engineering education          [17] F. Rastegar and M.N. Ahmadabadi. Grounding abstraction in sen-
+landscape. More than 200 students over 3 years have                        sory experience. Advanced intelligent mechatronics, 2007 ieee/asme
+                                                                           international conference on, pages 1–8, 2007.
+validated this concept and shown their satisfaction using             [18] P. Roduit, A. Martinoli, and J. Jacot. A quantitative method
+the e-puck. The open-source nature of this robot improves                  for comparing trajectories of mobile robots using point distribu-
+the quality of the support to the students by providing                    tion models.  Intelligent Robots and Systems, 2007. IROS 2007.
+                                                                           IEEE/RSJ International Conference on, pages 2441–2448, 2007.
+full access to knowledge at every level. For teachers this            [19] Roland Siegwart and Illah R. Nourbakhsh.   Introduction to Au-
+simpliﬁes maintenance and opens new             experimentation            tonomous Mobile Robots. MIT Press, 2004.
+possibilities. Finally, the rapid diffusion of the e-puck in          [20] Vlad M. Trifa, Christopher M. Cianci, and Dominique Guinard.
+                                                                           Dynamic Control of a Robotic Swarm    using a Service-Oriented
+the research community shows its versatility as a scientiﬁc                Architecture. In 13th International Symposium on Artiﬁcial Life
+experimentation tool.                                                      and Robotics (AROB 2008), 2008.
+                                                                      [21] Jean-Christophe Zufferey and Dario Floreano. Toward 30-gram
+                                                                           Autonomous Indoor Aircraft: Vision-based Obstacle Avoidance and
+                 VIII. ACKNOWLEDGMENT
+                                                                           Altitude Control. In IEEE International Conference on Robotics and
+   We thank    EPFL   for funding the development of the e-                Automation (ICRA’2005), pages 2594– 2599, 2005.
+puck robot through its Funding Program for Teaching and
+Learning. We also thank the Pedagogical Research and
+Support team     of  EPFL  for the detailed evaluation of the
+e-puck educational performances. We ﬁnally thank our
+students for their constructive feedback.
+
+                          REFERENCES
+
+  [1] Alberto Acerbi, Davide Marocco, and Stefano Nolﬁ. Social facil-
+      itation on the development of foraging behaviors in a population
+      of autonomous robots. Advances in Artiﬁcial Life, 4648:625–634,
+      2007.
+  [2] Saeed Amizadeh, Majid Nili Ahmadabadi, Babak N. Araabi, and
+      Roland Siegwart. A bayesian approach to conceptualization using
+      reinforcement learning. Advanced intelligent mechatronics, 2007
+      ieee/asme international conference on, pages 1–7, 2007.
+  [3] Rodney A. Brooks. Cambrian Intelligence. MIT Press, 1999.
+  [4] Christopher M. Cianci, Xavier Raemy, Jim Pugh, and Alcherio
+      Martinoli. Communication in a Swarm of Miniature Robots: The e-
+      Puck as an Educational Tool for Swarm Robotics. In Simulation of
+      Adaptive Behavior (SAB-2006), Swarm Robotics Workshop, pages
+      103–115, 2006, Lecture Notes in Computer Science (2007), vol.
+      4433.
+  [5] Roozbeh Daneshvar, Abdolhossein Sadeghi Marascht, Hossein Am-
+      inaiee, and Caro Lucas. A Quantitative Investigation into Distribu-
+      tion of Memory and Learning in Multi Agent Systems with Implicit
+      Communications, volume 4850, pages 124–133. Springer, 2007.
+  [6] H. Durrant-Whyte and T. Bailey. Simultaneous localization and
+      mapping: part i.  Robotics and Automation Magazine, IEEE,
+      13(2):99–110, June 2006.
+  [7] Dario Floreano, Sara Mitri, St ephane´ Magnenat, and Laurent Keller.
+      Evolutionary Conditions for the Emergence of Communication in
+      Robots. Current Biology, 17:514–519, 2007.
+  [8] N. Franceschini, J. M. Pichon, C. Blanes, and J. M. Brady. From
+      insect vision to robot vision [and discussion]. Philosophical
+      Transactions: Biological Sciences, 337(1281):283–294, 1992.
+  [9] O. Gigliotta and S. Nolﬁ. Formation of spatial representations in
+      evolving autonomous robots. Artiﬁcial Life, 2007. ALIFE ’07. IEEE
+      Symposium on, pages 171–178, 2007.
+[10] Babak N. Araabi Hadi Firouzi, Majid Nili Ahmadabadi.      A
+      probabilistic reinforcement-based approach to conceptualization.
+      International Journal of Intelligent Technology, 3:48–55, 2008.
+[11] Daisuke Kurabayashi Herianto, Toshiki Sakakibara.   Artiﬁcial
+      pheromone system using rﬁd for navigation of autonomous robots.
+      Journal of Bionic Engineering, 4:245–253, 2007.
