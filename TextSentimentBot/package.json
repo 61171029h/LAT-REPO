@@ -5,8 +5,13 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+<<<<<<< HEAD
     "start":"node index.js",
     "debug":"node --inspect index.js"
+=======
+    "start": "node index.js",
+    "debug": "node --inspect index.js"
+>>>>>>> 0ecbb17fd45e0def31172ecaae0b8a2b6c7a8a2e
   },
   "author": "",
   "license": "ISC",
