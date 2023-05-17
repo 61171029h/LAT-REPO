@@ -10,7 +10,7 @@
 </ul>
 <h2>➲ 作業連結區 ✍🏻</h2>
 <ul>
-  <li><a href="https://github.com/61171029h/LAT-REPO/tree/main/week2_hw">week2</a></li>
+  <li><a href="https://github.com/61171029h/LAT-REPO/tree/main/week2_hw">week2(年度預算合併)</a></li>
   <li><a href="https://github.com/61171029h/LAT-REPO/tree/main/week3_hw">week3(高級中等學校應屆畢業生未升學未就業情形)</a></li>
   <li><a href="https://github.com/61171029h/LAT-REPO/tree/main/hw4(TextSentimentBot)">hw4(TextSentimentBot)</a></li>
 </ul>
