@@ -9,7 +9,7 @@
 
 <h2>➲ 作業連結區 ✍🏻</h2>
 <ul>
-  <li><a herf="https://github.com/61171029h/LAT-REPO/tree/main/week2_hw">week2</a></li>
+  <li><a href="https://github.com/61171029h/LAT-REPO/tree/main/week2_hw">week2</a></li>
 </ul>
 <h2>➲ 專題連結區 ✍🏻</h2>
 <h2>➲ 其他連結區 ✍🏻</h2>
