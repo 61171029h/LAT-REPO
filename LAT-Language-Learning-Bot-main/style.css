@@ -1,0 +1,57 @@
+* {
+  margin: 0;
+  padding: 0;
+  background-color: #FEFCFF;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.wrapper {
+  text-align: center;
+}
+ 
+.wrapper > div {
+  text-align: center;
+}
+
+input, select {
+  width: 70%;
+  padding: 6px 10px;
+  margin: 8px auto;
+  text-align: center;
+}
+
+button {
+  background-color: #333; /* Green */
+  text-decoration: none;
+  border: none;
+  color: white;
+  padding: 6px 12px;
+  text-align: center;
+  display: inline-block;
+  font-size: 1rem;
+  border-radius: 8px;
+}
+
+button:hover {
+   background-color: #4CAF50; /* Green */
+   color: white;
+}
+ 
+#picDescription{
+   text-align: center;
+   font-weight: bold; 
+}
+
+textarea {
+  border: 2px solid black;
+  border-radius: 8px;
+  padding: 10px;
+}
+
+.output-textarea > div {
+  width: 33%;
+  display:table-cell;
+  font-size: 1.5rem;
+}
