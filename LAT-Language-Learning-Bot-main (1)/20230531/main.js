@@ -17,16 +17,16 @@ function readData(){
     $.getJSON(url)
     .done(function(msg) {
         console.log(msg);
-        // data[0].values[0] =0;
-        // data[0].values[1] =0;
-        // data[0].values[2] =0;
-        let sentiments = ['ar', 'yue', 'en', 'fr', 'de', 'ja', 'ko', 'ru', 'th', 'vi', 'zh-Hant'];
-        data[0].values = Array(sentiments.length).fill(0);
-        for (let i = 0; i < msg.length; i++) {
-            let sentiment = msg[i].sentiment;
-            let index = sentiments.indexOf(sentiment);
-            if (index !== -1) {
-              data[0].values[index] += 1;
+        let targetLanguages = ['ar', 'yue', 'en', 'fr', 'de', 'ja', 'ko', 'ru', 'th', 'vi', 'zh-Hant'];
+        //data[0].values = Array(targetLanguages.length).fill(0);
+        for(let i=0;i<targetLanguages.length;i++){
+            data[0].values[i] = 0;
+        }
+        for (let x = 0; x < msg.length; x++) {
+            for(let y=0;y<targetLanguages.length;y++){
+                if(msg[x].targetLanguage==targetLanguages[y]){
+                    data[0].values[y]+=1;
+                }
             }
           }
           Plotly.newPlot('myDiv', data, layout);
